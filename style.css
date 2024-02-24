@@ -1,0 +1,43 @@
+body{
+    background-color: #FCB31B;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+}
+.container-child{
+    display: flex;
+    
+    justify-content: center;
+    width: 400px;
+    height: 600px;
+    background-color:#212121;;
+    border-radius: 15px;
+}
+.calculator{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.display{
+    margin-top: 20px;
+    width: 350px;
+    height: 150px;
+    background-color: gray;
+}
+
+.all-buttons{
+    display: flex;
+    flex: 1;
+  flex-wrap: wrap;
+  padding: 20px;
+  
+}
+
+
+
+    
