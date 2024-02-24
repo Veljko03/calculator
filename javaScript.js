@@ -1,3 +1,8 @@
+
+
+
+
+
 function add(a,b){
     return a+b;
 }
@@ -17,6 +22,7 @@ function multiply(a,b){
 function operate(operator,num1,num2){
     if(operator == add){
         add(num1,num2);
+        
     } 
     else if(operator == subtract){
         subtract(nu1,num2);
@@ -28,3 +34,9 @@ function operate(operator,num1,num2){
         multiply(nu1,num2);
     }
 }
+
+function display(){
+    const numbers = document.querySelectorAll(".number");
+    console.log(numbers);
+}
+display();

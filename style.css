@@ -27,7 +27,7 @@ body{
     margin-top: 20px;
     width: 350px;
     height: 150px;
-    background-color: gray;
+    background-color: #3B3B3B;
     border-radius: 10px;
 }
 
@@ -47,8 +47,9 @@ button{
     border-radius: 40px;
     background-color: #616161;
     color: white;
-    font-size: 20px;
+    font-size: 23px;
     border: 0px solid ;
+    font-weight: bolder;
 }
 
 #eq{
