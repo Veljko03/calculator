@@ -1,3 +1,14 @@
+const display= document.getElementById("display");
+
+const numbers = document.querySelectorAll(".number");
+
+const ops = document.querySelectorAll(".operator");
+
+
+
+
+
+
 
 
 
@@ -35,8 +46,27 @@ function operate(operator,num1,num2){
     }
 }
 
-function display(){
-    const numbers = document.querySelectorAll(".number");
-    console.log(numbers);
+
+function displayOperators(){
+    ops.forEach(element =>{
+        element.addEventListener("click", () =>{
+            let show = document.createElement("p");
+            show.textContent = element.innerHTML;
+            display.appendChild(show);
+        })
+    })
 }
-display();
+
+
+
+function displayNumbers(){
+    numbers.forEach(number => {
+        number.addEventListener("click", ()=>{
+            let show = document.createElement("p");
+            show.textContent = number.value;
+            display.appendChild(show);
+        })
+    });
+}
+displayNumbers();
+displayOperators();
