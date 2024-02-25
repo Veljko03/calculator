@@ -1,11 +1,13 @@
 const display= document.getElementById("display");
 
 const numbers = document.querySelectorAll(".number");
-
+const clearAll = document.getElementById("clear-all");
 const ops = document.querySelectorAll(".operator");
 
 
-
+clearAll.addEventListener("click", ()=>{
+    window.location.reload();
+})
 
 
 
@@ -68,5 +70,11 @@ function displayNumbers(){
         })
     });
 }
+
+
+
+
+
+
 displayNumbers();
 displayOperators();
