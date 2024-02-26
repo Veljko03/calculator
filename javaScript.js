@@ -3,15 +3,15 @@ const display= document.getElementById("display");
 const numbers = document.querySelectorAll(".number");
 const clearAll = document.getElementById("clear-all");
 const ops = document.querySelectorAll(".operator");
-
+const btnEqual = document.getElementById("eq");
 const readInput = document.getElementById("in");
 
-let firstNumber=0;
-let secondNumber =0;
-let operator="*";
+let firstNumber=5;
+let secondNumber =7;
+let operator="+";
 
 
-console.log(operator)
+
 
 
 
@@ -49,27 +49,49 @@ function operate(userOperator,num1,num2){
     }
 }
 
+btnEqual.addEventListener("click",() =>{
+    while(display.firstChild){
+        display.firstChild.remove();
+    }
+    let result = document.createElement("p");
+    result.textContent = operate(operator,firstNumber,secondNumber);
+    display.appendChild(result);
+})
 
 function displayOperators(){
+    let show = document.createElement("p");
     ops.forEach(element =>{
         element.addEventListener("click", () =>{
-            let show = document.createElement("p");
+            
+            
+            
             show.textContent = element.innerHTML;
             display.appendChild(show);
+            operator = show.textContent;
+            console.log(operator);
         })
     })
 }
-
-
+console.log(firstNumber);
+console.log(secondNumber);
+console.log(operator);
 
 function displayNumbers(){
-    numbers.forEach(number => {
-        number.addEventListener("click", ()=>{
-            let show = document.createElement("p");
-            show.textContent = number.value;
-            dislay.appendChild(show);
-        })
-    });
+    
+        let show = document.createElement("p");
+        numbers.forEach(number => {
+            number.addEventListener("click", ()=>{
+               
+                
+                show.textContent += number.value;
+                display.appendChild(show);
+                firstNumber = parseInt(show.textContent);
+                console.log(firstNumber);
+            })
+        });
+    
+    
+    
 }
 
 clearAll.addEventListener("click", ()=>{
@@ -77,10 +99,10 @@ clearAll.addEventListener("click", ()=>{
 })
 
 
+function startCalculator(){
+
+}
 
 
-displayNumbers();
 displayOperators();
-
-let sum = operate("+",10,5);
-console.log(sum);
+displayNumbers();
