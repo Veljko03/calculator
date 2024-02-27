@@ -71,11 +71,26 @@ function displayOperators(){
         element.addEventListener("click", () =>{
             
             
+            if(!secondNumber){
+                showOperator.textContent = element.innerHTML;
+                display.appendChild(showOperator);
+                operator = showOperator.textContent;
+            }
             
-            showOperator.textContent = element.innerHTML;
-            display.appendChild(showOperator);
-            operator = showOperator.textContent;
-            
+            else if(secondNumber && operator !=""){
+                while(display.firstChild){
+                            display.firstChild.remove();
+                        }
+                        firstNumber=parseInt(operate(operator,firstNumber,secondNumber));
+                        showNumber.textContent = firstNumber;
+                        secondNumber = 0;
+                        
+                        showNumber2.textContent = "";
+                        display.appendChild(showNumber);
+                        showOperator.textContent = element.innerHTML;
+                        display.appendChild(showOperator);
+                        operator = showOperator.textContent;
+            }
         })
     })
     
@@ -91,22 +106,32 @@ function displayNumbers(){
             numbers.forEach(number => {
                 number.addEventListener("click", ()=>{
                    
-                    if(firstNumber == null){
+                    if(operator == ""){
                         showNumber.textContent += number.value;
                         display.appendChild(showNumber);
                          
                         firstNumber = parseInt(showNumber.textContent);
                         console.log(firstNumber);
-                    }
+                    // }else if(secondNumber){
+                    //     while(display.firstChild){
+                    //         display.firstChild.remove();
+                    //     }
+                    //     firstNumber=parseInt(operate(operator,firstNumber,secondNumber));
+                    //     showNumber.textContent = firstNumber;
+                    //     secondNumber = 0;
+                    //     operator="";
+                    //     showNumber2.textContent = "";
+                    // }
                     
-                   
-                    else{
+                    }
+                    else if( operator != ""){
+                        
                         showNumber2.textContent += number.value;
                     display.appendChild(showNumber2);
                  
                          secondNumber = parseInt(showNumber2.textContent);
                     }
-                })
+                });
             });
         
       
