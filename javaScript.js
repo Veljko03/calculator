@@ -32,6 +32,9 @@ function devide(a,b){
 function multiply(a,b){
     return a*b;
 }
+function procent(a,b){
+    return a%b;
+}
 
 function operate(userOperator,num1,num2){
     if(userOperator == "+"){
@@ -47,9 +50,16 @@ function operate(userOperator,num1,num2){
     else if(userOperator == "*"){
         return multiply(num1,num2);
     }
+    else if(userOperator == "%"){
+        return procent(num1,num2);
+    }
 }
 
 btnEqual.addEventListener("click",() =>{
+    if(!secondNumber){
+        alert("error");
+    }
+    
     while(display.firstChild){
         display.firstChild.remove();
     }
@@ -112,16 +122,7 @@ function displayNumbers(){
                          
                         firstNumber = parseInt(showNumber.textContent);
                         console.log(firstNumber);
-                    // }else if(secondNumber){
-                    //     while(display.firstChild){
-                    //         display.firstChild.remove();
-                    //     }
-                    //     firstNumber=parseInt(operate(operator,firstNumber,secondNumber));
-                    //     showNumber.textContent = firstNumber;
-                    //     secondNumber = 0;
-                    //     operator="";
-                    //     showNumber2.textContent = "";
-                    // }
+                   
                     
                     }
                     else if( operator != ""){
