@@ -4,11 +4,11 @@ const numbers = document.querySelectorAll(".number");
 const clearAll = document.getElementById("clear-all");
 const ops = document.querySelectorAll(".operator");
 const btnEqual = document.getElementById("eq");
-const readInput = document.getElementById("in");
 
-let firstNumber=5;
-let secondNumber =7;
-let operator="+";
+
+let firstNumber=0;
+let secondNumber;
+let operator="";
 
 
 
@@ -53,46 +53,70 @@ btnEqual.addEventListener("click",() =>{
     while(display.firstChild){
         display.firstChild.remove();
     }
+    
     let result = document.createElement("p");
     result.textContent = operate(operator,firstNumber,secondNumber);
     display.appendChild(result);
+    firstNumber = parseInt(result.textContent);
+    secondNumber =0;
+    operator="";
+    showNumber2.textContent = "";
+    showNumber.textContent = "";
+    
 })
-
+let showOperator = document.createElement("p");
 function displayOperators(){
-    let show = document.createElement("p");
+    
     ops.forEach(element =>{
         element.addEventListener("click", () =>{
             
             
             
-            show.textContent = element.innerHTML;
-            display.appendChild(show);
-            operator = show.textContent;
-            console.log(operator);
+            showOperator.textContent = element.innerHTML;
+            display.appendChild(showOperator);
+            operator = showOperator.textContent;
+            
         })
     })
+    
 }
 console.log(firstNumber);
 console.log(secondNumber);
 console.log(operator);
-
+let showNumber = document.createElement("p");
+showNumber.className = "showNum";
 function displayNumbers(){
     
-        let show = document.createElement("p");
-        numbers.forEach(number => {
-            number.addEventListener("click", ()=>{
-               
-                
-                show.textContent += number.value;
-                display.appendChild(show);
-                firstNumber = parseInt(show.textContent);
-                console.log(firstNumber);
-            })
-        });
+        
+            numbers.forEach(number => {
+                number.addEventListener("click", ()=>{
+                   
+                    if(firstNumber == null){
+                        showNumber.textContent += number.value;
+                        display.appendChild(showNumber);
+                         
+                        firstNumber = parseInt(showNumber.textContent);
+                        console.log(firstNumber);
+                    }
+                    
+                   
+                    else{
+                        showNumber2.textContent += number.value;
+                    display.appendChild(showNumber2);
+                 
+                         secondNumber = parseInt(showNumber2.textContent);
+                    }
+                })
+            });
+        
+      
     
-    
-    
+        
 }
+let showNumber2 = document.createElement("p");
+showNumber.className = "showNum2";
+
+  
 
 clearAll.addEventListener("click", ()=>{
     window.location.reload();
@@ -100,9 +124,15 @@ clearAll.addEventListener("click", ()=>{
 
 
 function startCalculator(){
-
+    firstNumber=0;
+    displayNumbers();
+    displayOperators();
+    
+        
+    
+    
 }
 
+startCalculator();
 
-displayOperators();
-displayNumbers();
+
