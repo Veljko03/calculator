@@ -51,10 +51,14 @@ btnBack.addEventListener("click" , () =>{
         display.lastChild.remove();
         operator ="";
         showOperator.textContent="";
+        document.getElementById("point").disabled = false;
+
     } else if(secondNumber){
         display.lastChild.remove();
         secondNumber =0;
         showNumber2.textContent="";
+        document.getElementById("point").disabled = false;
+
     }
 })
 
@@ -89,11 +93,12 @@ btnEqual.addEventListener("click",() =>{
     let result = document.createElement("p");
     result.textContent = operate(operator,firstNumber,secondNumber);
     display.appendChild(result);
-    firstNumber = parseInt(result.textContent);
+    firstNumber = parseFloat(result.textContent);
     secondNumber =0;
     operator="";
     showNumber2.textContent = "";
     showNumber.textContent = "";
+    document.getElementById("point").disabled = false;
     
 })
 let showOperator = document.createElement("p");
@@ -110,13 +115,15 @@ function displayOperators(){
                 display.appendChild(showOperator);
                 operator = showOperator.textContent;
                 point ="";
+        document.getElementById("point").disabled = false;
+
             }
             
             else if(secondNumber && operator !=""){
                 while(display.firstChild){
                             display.firstChild.remove();
                         }
-                        firstNumber=parseInt(operate(operator,firstNumber,secondNumber));
+                        firstNumber=parseFloat(operate(operator,firstNumber,secondNumber));
                         showNumber.textContent = firstNumber;
                         secondNumber = 0;
                         
@@ -126,6 +133,8 @@ function displayOperators(){
                         display.appendChild(showOperator);
                         operator = showOperator.textContent;
                         point ="";
+        document.getElementById("point").disabled = false;
+
             }
         })
     })
@@ -171,7 +180,7 @@ function displayNumbers(){
                              
                                 secondNumber = parseFloat(showNumber2.textContent);
                             point=".";
-                        }else if(!secondNumber && number.id == "point" && point == ""){
+                        }else if(secondNumber !=0 && number.id == "point" && point == ""){
                             alert("put in some number first!");
                         }else if(number.id != "point"){
                             showNumber2.textContent += number.value;
