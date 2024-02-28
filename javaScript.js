@@ -4,7 +4,7 @@ const numbers = document.querySelectorAll(".number");
 const clearAll = document.getElementById("clear-all");
 const ops = document.querySelectorAll(".operator");
 const btnEqual = document.getElementById("eq");
-
+const btnBack = document.getElementById("back");
 
 let firstNumber=0;
 let secondNumber;
@@ -35,6 +35,22 @@ function multiply(a,b){
 function procent(a,b){
     return a%b;
 }
+
+btnBack.addEventListener("click" , () =>{
+    if(operator == ""){
+        display.lastChild.remove();
+        firstNumber =0;
+        showNumber.textContent="";
+    }else if(operator != "" && !secondNumber){
+        display.lastChild.remove();
+        operator ="";
+        showOperator.textContent="";
+    } else if(secondNumber){
+        display.lastChild.remove();
+        secondNumber =0;
+        showNumber2.textContent="";
+    }
+})
 
 function operate(userOperator,num1,num2){
     if(userOperator == "+"){
@@ -109,7 +125,7 @@ console.log(firstNumber);
 console.log(secondNumber);
 console.log(operator);
 let showNumber = document.createElement("p");
-showNumber.className = "showNum";
+
 function displayNumbers(){
     
         
@@ -140,7 +156,7 @@ function displayNumbers(){
         
 }
 let showNumber2 = document.createElement("p");
-showNumber.className = "showNum2";
+
 
   
 
