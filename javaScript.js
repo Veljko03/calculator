@@ -174,13 +174,13 @@ function displayNumbers(){
                     else if( operator != ""){
                         
 
-                        if(secondNumber && number.id == "point" && point == ""){
+                        if((secondNumber || secondNumber==0) && number.id == "point" && point == ""){
                             showNumber2.textContent +=number.innerHTML;
                                 display.appendChild(showNumber2);
                              
                                 secondNumber = parseFloat(showNumber2.textContent);
                             point=".";
-                        }else if(secondNumber !=0 && number.id == "point" && point == ""){
+                        }else if( number.id == "point" && point == ""){
                             alert("put in some number first!");
                         }else if(number.id != "point"){
                             showNumber2.textContent += number.value;
