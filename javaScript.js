@@ -6,9 +6,12 @@ const ops = document.querySelectorAll(".operator");
 const btnEqual = document.getElementById("eq");
 const btnBack = document.getElementById("back");
 
+
+
 let firstNumber=0;
 let secondNumber;
 let operator="";
+let point = "";
 
 
 
@@ -35,6 +38,9 @@ function multiply(a,b){
 function procent(a,b){
     return a%b;
 }
+
+
+
 
 btnBack.addEventListener("click" , () =>{
     if(operator == ""){
@@ -97,10 +103,13 @@ function displayOperators(){
         element.addEventListener("click", () =>{
             
             
+            console.log(point);
             if(!secondNumber){
+                
                 showOperator.textContent = element.innerHTML;
                 display.appendChild(showOperator);
                 operator = showOperator.textContent;
+                point ="";
             }
             
             else if(secondNumber && operator !=""){
@@ -116,6 +125,7 @@ function displayOperators(){
                         showOperator.textContent = element.innerHTML;
                         display.appendChild(showOperator);
                         operator = showOperator.textContent;
+                        point ="";
             }
         })
     })
@@ -132,21 +142,47 @@ function displayNumbers(){
             numbers.forEach(number => {
                 number.addEventListener("click", ()=>{
                    
+                    
                     if(operator == ""){
+                        if(number.id == "point" && point==""){
+                            
+                            showNumber.textContent +=number.innerHTML;
+                            display.appendChild(showNumber);
+                         
+                        firstNumber = parseFloat(showNumber.textContent);
+                        point=".";
+                        }else if(number.id == "point" && point != ""){
+                            document.getElementById("point").disabled = true;
+                        } else{
                         showNumber.textContent += number.value;
                         display.appendChild(showNumber);
                          
-                        firstNumber = parseInt(showNumber.textContent);
+                        firstNumber = parseFloat(showNumber.textContent);
                         console.log(firstNumber);
                    
-                    
+                        }
                     }
                     else if( operator != ""){
                         
-                        showNumber2.textContent += number.value;
-                    display.appendChild(showNumber2);
-                 
-                         secondNumber = parseInt(showNumber2.textContent);
+
+                        if(secondNumber && number.id == "point" && point == ""){
+                            showNumber2.textContent +=number.innerHTML;
+                                display.appendChild(showNumber2);
+                             
+                                secondNumber = parseFloat(showNumber2.textContent);
+                            point=".";
+                        }else if(!secondNumber && number.id == "point" && point == ""){
+                            alert("put in some number first!");
+                        }else if(number.id != "point"){
+                            showNumber2.textContent += number.value;
+                             display.appendChild(showNumber2);
+                     
+                             secondNumber = parseFloat(showNumber2.textContent);
+                        }else if(secondNumber && number.id == "point" && point != ""){
+                            document.getElementById("point").disabled = true;
+
+                        }
+                        
                     }
                 });
             });
